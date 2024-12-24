@@ -1,0 +1,17 @@
+# Version of docker compose
+version: "3.9"
+
+services:
+  app:
+    build:
+      # use the current directory
+      context: .
+      args:
+        - DEV=true
+    ports:
+      - "8000:8000"
+    # mapping directories from our system into the docker container
+    volumes:
+      - ./app:/app
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
